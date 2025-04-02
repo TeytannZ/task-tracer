@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="work-in-progress.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4361ee">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <i class="fas fa-tasks"></i>
+                <h1>Task Tracker</h1>
+            </div>
+            <button id="add-category-btn" class="btn btn-primary">
+                <i class="fas fa-folder-plus"></i> Add Category
+            </button>
+        </div>
+    </header>
+
+    <div class="container main-container">
+        <div class="main-content">
+            <main class="content">
+                <div id="categories-container" class="category-list">
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list empty-icon"></i>
+                        <p>You don't have any categories or tasks yet.</p>
+                        <button id="empty-add-category-btn" class="btn btn-primary">
+                            <i class="fas fa-folder-plus"></i> Add Your First Category
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Task Form Modal -->
+<div id="task-form-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add New Task</h2>
+      <form id="task-form">
+        <input type="hidden" id="modal-category-id" name="modal-category-id" value="">
+        <div class="form-group">
+          <label for="task-name">Task Name</label>
+          <input type="text" id="task-name" placeholder="Enter task name" required>
+        </div>
+        <div class="form-group">
+          <label for="task-start-date">Start Date</label>
+          <input type="date" id="task-start-date" required>
+        </div>
+        <div class="form-group">
+          <label for="task-color">Task Color</label>
+          <div class="color-picker" id="color-picker">
+            <div class="color-option selected" style="background-color: #4361ee;" data-color="#4361ee"></div>
+            <div class="color-option" style="background-color: #3a0ca3;" data-color="#3a0ca3"></div>
+            <div class="color-option" style="background-color: #f72585;" data-color="#f72585"></div>
+            <div class="color-option" style="background-color: #4caf50;" data-color="#4caf50"></div>
+            <div class="color-option" style="background-color: #ff9800;" data-color="#ff9800"></div>
+            <div class="color-option" style="background-color: #f44336;" data-color="#f44336"></div>
+          </div>
+          <input type="hidden" id="task-color" value="#4361ee">
+        </div>
+        <div class="form-buttons">
+          <button type="button" id="cancel-task" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <!-- Category Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="category-modal-title">Add Category</h2>
+            <form id="category-form">
+                <input type="hidden" id="category-id">
+                <div class="form-group">
+                    <label for="category-name">Category Name</label>
+                    <input type="text" id="category-name" placeholder="Enter category name" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-color">Category Color</label>
+                    <div class="color-picker" id="category-color-picker">
+                        <div class="color-option selected" style="background-color: #4361ee;" data-color="#4361ee"></div>
+                        <div class="color-option" style="background-color: #3a0ca3;" data-color="#3a0ca3"></div>
+                        <div class="color-option" style="background-color: #f72585;" data-color="#f72585"></div>
+                        <div class="color-option" style="background-color: #4caf50;" data-color="#4caf50"></div>
+                        <div class="color-option" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                        <div class="color-option" style="background-color: #f44336;" data-color="#f44336"></div>
+                    </div>
+                    <input type="hidden" id="category-color" value="#4361ee">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" id="delete-category-btn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                    <div class="right-buttons">
+                        <button type="button" id="cancel-category" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Category</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task Edit Modal -->
+    <div id="task-edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Task</h2>
+            <form id="task-edit-form">
+                <input type="hidden" id="edit-task-id">
+                <input type="hidden" id="edit-category-id">
+                <div class="form-group">
+                    <label for="edit-task-name">Task Name</label>
+                    <input type="text" id="edit-task-name" placeholder="Enter task name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-start-date">Start Date</label>
+                    <input type="date" id="edit-task-start-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-color">Task Color</label>
+                    <div class="color-picker" id="edit-color-picker">
+                        <div class="color-option" style="background-color: #4361ee;" data-color="#4361ee"></div>
+                        <div class="color-option" style="background-color: #3a0ca3;" data-color="#3a0ca3"></div>
+                        <div class="color-option" style="background-color: #f72585;" data-color="#f72585"></div>
+                        <div class="color-option" style="background-color: #4caf50;" data-color="#4caf50"></div>
+                        <div class="color-option" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                        <div class="color-option" style="background-color: #f44336;" data-color="#f44336"></div>
+                    </div>
+                    <input type="hidden" id="edit-task-color">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" id="delete-task-btn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                    <div class="right-buttons">
+                        <button type="button" id="cancel-edit-task" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/sync.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js');
+        }
+      </script>
+      
+        
+</body>
+</html>
