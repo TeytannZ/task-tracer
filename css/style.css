@@ -1,0 +1,826 @@
+:root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --success: #4caf50;
+    --danger: #f44336;
+    --warning: #ff9800;
+    --info: #2196f3;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --gray: #6c757d;
+    --bg-color: #f5f7fb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--dark);
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+h1 {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 0.5rem;
+}
+
+.main-content {
+    /* Change from grid to regular display */
+    display: block;
+    margin-top: 1.5rem;
+}
+
+.sidebar {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.25rem;
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+    overflow: hidden;
+}
+
+.content {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.25rem;
+}
+
+.btn {
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    touch-action: manipulation;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+.btn-toggle {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-toggle:hover {
+    background-color: #e2e6ea;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+    font-size: 0.9375rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9375rem;
+}
+
+h2 {
+    margin-bottom: 1.25rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+#categories-container {
+    margin-top: 1.875rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.category {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    /* Use percentage or flexible width */
+    width: calc(50% - 1.25rem); /* Adjust based on how many you want per row */
+    max-width: 450px; /* Maximum width of each category */
+    min-width: 300px; /* Minimum width to ensure readability */
+    margin-bottom: 1.25rem;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.category-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+
+.category-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.category-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    align-items: center;
+}
+
+.stat {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.3125rem 0.625rem;
+    border-radius: 5px;
+    font-size: 0.875rem;
+}
+
+.category-content {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.task {
+    background-color: var(--light);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.625rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.625rem;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3125rem;
+}
+
+.task-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.task-date {
+    font-size: 0.875rem;
+    color: var(--gray);
+}
+
+.task-success {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+}
+
+.task-calendar {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 0.625rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    gap: 0.3125rem;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    gap: 0.3125rem;
+    margin-bottom: 0.3125rem;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.3125rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    min-width: 30px;
+    min-height: 30px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.calendar-day.success {
+    background-color: var(--success);
+    color: white;
+}
+
+.calendar-day.fail {
+    background-color: var(--danger);
+    color: white;
+}
+
+.calendar-day.neutral {
+    background-color: #e0e0e0;
+}
+
+.calendar-day.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.calendar-day:active {
+    transform: scale(0.95);
+}
+
+.chart-container {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3125rem;
+    margin-top: 0.3125rem;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border-color: var(--dark);
+}
+
+.task-edit-form {
+    background-color: var(--light);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.625rem;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 0.625rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    position: relative;
+}
+
+.close {
+    color: var(--gray);
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2.5rem 1.25rem;
+    color: var(--gray);
+}
+
+.empty-state p {
+    margin-bottom: 1.25rem;
+}
+
+/* Updated Breakpoints for Responsive Design */
+/* Tablets and small desktops */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 992px;
+    }
+    
+    .chart-container {
+        height: 180px;
+    }
+}
+
+/* Landscape tablets */
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+        padding: 0.75rem;
+    }
+    
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: static;
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+}
+
+/* Portrait tablets and large phones */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task {
+        grid-template-columns: 1fr;
+    }
+    
+    .task-actions {
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+    }
+    
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem;
+    }
+    
+    .category-stats {
+        margin-top: 0.5rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .form-buttons .btn {
+        width: 100%;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .calendar-day-header {
+        font-size: 0.625rem;
+    }
+    
+    .calendar-day {
+        min-width: 28px;
+        min-height: 28px;
+        font-size: 0.625rem;
+    }
+    
+    .category-content,
+    .sidebar,
+    .content {
+        padding: 0.75rem;
+    }
+    
+    .task {
+        padding: 0.75rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .task-calendar {
+        padding: 0.5rem;
+    }
+    
+    .chart-container {
+        height: 180px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .modal-content {
+        padding: 1rem;
+        width: 95%;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 350px) {
+    .calendar-day {
+        min-width: 24px;
+        min-height: 24px;
+        font-size: 0.5rem;
+    }
+    
+    .calendar-grid,
+    .calendar-header {
+        gap: 0.25rem;
+    }
+    
+    .category-stats {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .stat {
+        width: 100%;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .main-content {
+        grid-template-columns: 350px 1fr;
+        gap: 2rem;
+    }
+    
+    body {
+        font-size: 18px;
+    }
+    
+    .calendar-grid,
+    .calendar-header {
+        grid-template-columns: repeat(7, minmax(40px, 1fr));
+    }
+    
+    .calendar-day {
+        font-size: 0.875rem;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+}
+
+/* Dark Mode Support with improved contrast */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --light: #2d2d2d;
+        --dark: #f8f9fa;
+    }
+    
+    body {
+        color: #f8f9fa;
+    }
+    
+    header, .sidebar, .content, .category, .modal-content {
+        background-color: #1e1e1e;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    input, select {
+        background-color: #2d2d2d;
+        border-color: #444;
+        color: #f8f9fa;
+    }
+    
+    .task {
+        background-color: #2d2d2d;
+    }
+    
+    .calendar-day.neutral {
+        background-color: #444;
+        color: #f8f9fa;
+    }
+    
+    .task-calendar {
+        background-color: #252525;
+    }
+    
+    .btn-toggle {
+        background-color: #383838;
+        color: #f8f9fa;
+    }
+}
+
+/* Touch-optimized styles */
+@media (hover: none) {
+    .btn {
+        padding: 0.75rem 1rem;  /* Larger touch targets */
+    }
+    
+    .calendar-day {
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    .color-option {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .btn:active,
+    .calendar-day:active,
+    .color-option:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Support for narrow-width orientation like folded devices */
+@media (max-width: 400px) and (max-height: 900px) {
+    .main-content {
+        gap: 1rem;
+    }
+    
+    .sidebar, .content {
+        padding: 0.75rem;
+    }
+    
+    .category-content {
+        padding: 0.75rem;
+    }
+    
+    .chart-container {
+        height: 150px;
+    }
+}
+
+/* High-contrast mode support */
+@media (forced-colors: active) {
+    .btn, .calendar-day, .color-option, .category, .task {
+        border: 1px solid;
+    }
+    
+    .calendar-day.success {
+        border: 2px solid;
+    }
+    
+    .calendar-day.fail {
+        border: 2px solid;
+    }
+}
+
+/* Add these at the end of your CSS file */
+
+/* Add subtle animations for a more professional feel */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal {
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Enhance buttons with hover effects */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Make graphs and charts more professional */
+.chart-container {
+    border-radius: 8px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+    padding: 8px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Better form styling */
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* Task styling improvements */
+.task {
+    transition: all 0.2s ease;
+}
+
+.task:hover {
+    transform: translateX(3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Improve calendar appearance */
+.calendar-grid {
+    margin-top: 10px;
+}
+
+.calendar-day {
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.calendar-day:hover:not(.disabled) {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Logo styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+/* Form buttons improved layout */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Task actions style improvement */
+.task-actions {
+    gap: 8px;
+}
+
+.task-actions button {
+    padding: 6px 12px;
+}
+
+/* Empty state enhancement */
+.empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #f9f9f9, #f5f5f5);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.03);
+}
+
+.empty-icon {
+    font-size: 48px;
+    color: var(--gray);
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+/* Improved visual hierarchy */
+.category-name {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Enhanced modal animations */
+.modal {
+    backdrop-filter: blur(5px);
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content {
+    animation: modalSlideIn 0.3s ease forwards;
+}
